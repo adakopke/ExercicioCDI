@@ -30,7 +30,7 @@ public class Main {
         switch (opcao) {
             case 1:
                 //TODO fazer cadastro do usuário
-               aplicacao.getUsuarioview().create(sc);
+               aplicacao.getUsuarioView().create(sc);
             break;
             case 0:
                 System.exit(0);
