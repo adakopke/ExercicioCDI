@@ -19,7 +19,7 @@ public class Main {
         System.out.println("Bem-vindo");
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("1 - Cadastrar\n0 - Sair");
+            System.out.println("1 - Cadastrar Usuário\n0 - Sair");
           opcao = sc.nextInt();
           definirOpcao(sc, opcao, aplicacao);
         } while (opcao > 0);
