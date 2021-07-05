@@ -14,9 +14,15 @@ public class ContaFactory {
     @Any
     private Instance<ContaService> contaServiceInstance;
 
-    public ContaService createConta(TipoConta tipoConta) {
+    public ContaService escolherConta(TipoConta tipoConta) {
         ContaAnotationLiteral literal = new ContaAnotationLiteral(tipoConta);
         return contaServiceInstance.select(literal).get();
     }
+
+
+
 }
+
+
+
 

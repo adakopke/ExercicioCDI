@@ -14,6 +14,9 @@ public class AplicacaoView {
     @Inject
     private ContaView contaView;
 
+    @Inject
+    private OperarContaView operarContaView;
+
     public void init() throws IOException {
 
         int opcao = 0;
@@ -21,10 +24,11 @@ public class AplicacaoView {
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println(
-                    "1 - Cadastrar Usuário\n" +
-                    "2 - Listar Usuários\n" +
-                    "3 - Cadastrar conta\n" +
-                    "0 - Sair");
+                           "1 - Cadastrar Usuário\n" +
+                            "2 - Listar Usuários\n" +
+                            "3 - Cadastrar conta\n" +
+                            "4 - Operar conta\n" +
+                            "0 - Sair");
             opcao = sc.nextInt();
             definirOpcao(sc, opcao);
         } while (opcao > 0);
@@ -45,6 +49,9 @@ public class AplicacaoView {
 
             case 3:
                 contaView.init();
+
+            case 4:
+                operarContaView.init();
 
             case 0:
                 System.exit(0);

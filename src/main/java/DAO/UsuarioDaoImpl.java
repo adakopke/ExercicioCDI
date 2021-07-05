@@ -30,7 +30,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
             while ((linha = br.readLine()) != null) {
 
                 String[] cols = linha.split(",");
-                System.out.println("CodCliente: " + cols[0] + " | Nome: " + cols[1] + " | Senha: " + cols[3]) ;
+                System.out.println("CodCliente: " + cols[0] + " | Nome: " + cols[1]) ;
             }
 
         } catch (FileNotFoundException e) {

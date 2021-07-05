@@ -3,8 +3,6 @@ package View;
 import DAO.UsuarioDao;
 import Dominio.*;
 import Factory.ContaFactory;
-import Service.ContaPoupancaServiceImpl;
-import Service.ContaService;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -28,7 +26,7 @@ public class ContaViewImpl implements ContaView {
 
             System.out.println(
                     "1 - Conta Corrente\n" +
-                    "2 - Conta Investimento\n" +
+                    "2 - Conta Especial\n" +
                     "3 - Conta Poupança\n" +
                     "0 - Sair\n"
             );
@@ -46,27 +44,25 @@ public class ContaViewImpl implements ContaView {
             case 1:
                 System.out.println("criar conta corrente");
                 Conta contaCorrente = new ContaCorrente();
-                System.out.println("Informe o saldo de abertura");
-                contaCorrente.setSaldo(sc.nextInt());
-                System.out.println("A qual usuário deseja associar a contaCorrente");
+                contaCorrente.setSaldo(0);
+                System.out.println("Digite o código do cliente para associar a conta corrente");
                 usuarioDao.listar();
                 contaCorrente.setCodCliente(sc.nextInt());
                 contaCorrente.setTipoConta(TipoConta.CORRENTE);
-                contaFactory.createConta(TipoConta.CORRENTE).create(contaCorrente);
+                contaFactory.escolherConta(TipoConta.CORRENTE).create(contaCorrente);
 
 
                 break;
 
             case 2:
-                System.out.println("criar conta investimento");
-                Conta contaInvestimento = new ContaInvestimento();
-                System.out.println("Informe o saldo de abertura");
-                contaInvestimento.setSaldo(sc.nextInt());
-                System.out.println("A qual usuário deseja associar a contaInvestimento");
+                System.out.println("criar conta especial");
+                Conta contacontaEspecial = new ContaEspecial();
+                contacontaEspecial.setSaldo(0);
+                System.out.println("Digite o código do cliente para associar a conta especial");
                 usuarioDao.listar();
-                contaInvestimento.setCodCliente(sc.nextInt());
-                contaInvestimento.setTipoConta(TipoConta.INVESTIMENTO);
-                contaFactory.createConta(TipoConta.INVESTIMENTO).create(contaInvestimento);
+                contacontaEspecial.setCodCliente(sc.nextInt());
+                contacontaEspecial.setTipoConta(TipoConta.ESPECIAL);
+                contaFactory.escolherConta(TipoConta.ESPECIAL).create(contacontaEspecial);
 
 
 
@@ -75,19 +71,18 @@ public class ContaViewImpl implements ContaView {
             case 3:
                 System.out.println("criar conta poupança");
                 Conta contaPoupanca = new ContaPoupanca();
-                System.out.println("Informe o saldo de abertura");
-                contaPoupanca.setSaldo(sc.nextInt());
-                System.out.println("A qual usuário deseja associar a contaPoupança");
+                contaPoupanca.setSaldo(0);
+                System.out.println("Digite o código do cliente para associar a contaPoupança");
                 usuarioDao.listar();
                 contaPoupanca.setCodCliente(sc.nextInt());
                 contaPoupanca.setTipoConta(TipoConta.POUPANCA);
-                contaFactory.createConta(TipoConta.POUPANCA).create(contaPoupanca);
+                contaFactory.escolherConta(TipoConta.POUPANCA).create(contaPoupanca);
 
                 break;
 
             case 0:
-                //TODO como faço para voltar ao menu anterior
-                System.out.println("voltar ao menu anterior");
+                //TODO como faço para voltar ao menu anterior?
+                System.out.println("Sair");
 
                 break;
 
