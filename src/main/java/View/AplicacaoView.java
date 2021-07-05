@@ -24,10 +24,9 @@ public class AplicacaoView {
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println(
-                           "1 - Cadastrar Usuário\n" +
-                            "2 - Listar Usuários\n" +
-                            "3 - Cadastrar conta\n" +
-                            "4 - Operar conta\n" +
+                            "1 - Cadastrar Cliente\n" +
+                            "2 - Cadastrar conta\n" +
+                            "3 - Operar conta\n" +
                             "0 - Sair");
             opcao = sc.nextInt();
             definirOpcao(sc, opcao);
@@ -44,13 +43,9 @@ public class AplicacaoView {
                 break;
 
             case 2:
-                usuarioView.listar();
-                break;
-
-            case 3:
                 contaView.init();
 
-            case 4:
+            case 3:
                 operarContaView.init();
 
             case 0:

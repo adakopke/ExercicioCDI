@@ -11,7 +11,7 @@ import javax.inject.Qualifier;
 public abstract class Conta {
 
     public TipoConta tipoConta;
-    public Integer saldo;
+    public Float saldo;
     public Integer codCliente;
 
 

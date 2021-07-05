@@ -21,9 +21,9 @@ public class ContaCorrenteServiceImpl implements ContaService {
     }
 
     @Override
-    public void sacar(int valor, String nomeArquivo) {
+    public void sacar(Float valor, String nomeArquivo) {
 
-        int saldoAtual = Integer.parseInt(contaDao.saldo(nomeArquivo));
+        Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
 
         if ((saldoAtual - valor) < 0) {
             System.out.println("Você não possui saldo para realizar esse saque");
@@ -31,23 +31,21 @@ public class ContaCorrenteServiceImpl implements ContaService {
             contaDao.atualizarSaldo((saldoAtual - valor), nomeArquivo);
         }
 
-
-
     }
 
     @Override
-    public void depositar(int valor, String nomeArquivo) {
+    public void depositar(Float valor, String nomeArquivo) {
 
-    }
+
+        Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
+        contaDao.atualizarSaldo((saldoAtual + valor), nomeArquivo);
+        }
+
 
     @Override
     public String saldo(String nomeArquivo) {
-
         contaDao.saldo(nomeArquivo);
-
         return contaDao.saldo(nomeArquivo);
-
-
     }
 
     @Override

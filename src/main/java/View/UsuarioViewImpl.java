@@ -16,16 +16,16 @@ public class UsuarioViewImpl implements UsuarioView {
     @Override
     public Usuario create(Scanner sc){
     Usuario usuario = new Usuario();
-        System.out.println("Informe o nome do usuário");
+        System.out.println("Informe o nome do cliente");
         usuario.setNome(sc.next());
-        System.out.println("Informe a idade do usuário");
+        System.out.println("Informe a idade do cliente");
         usuario.setIdade(sc.nextInt());
         System.out.println("Informe o código do cliente");
         usuario.setCodCliente(sc.nextInt());
         System.out.println("Informe a senha:");
         usuario.setSenha(sc.next());
         usuarioService.create(usuario);
-        System.out.printf("O usuário %s foi criado.\n", usuario);
+        System.out.println("Cliente cadastrado com sucesso");
 
     return usuario;
     }

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ContaEspecial extends Conta {
 
-    private Integer limite;
+  private Float limite;
 
 }

@@ -1,7 +1,6 @@
 package DAO;
 
 import Dominio.Conta;
-import Dominio.ContaCorrente;
 import Dominio.TipoConta;
 
 public interface ContaDao {
@@ -16,5 +15,5 @@ public interface ContaDao {
 
     String saldo(String nomeArquivo);
 
-    void atualizarSaldo(int valor, String nomeArquivo);
+    void atualizarSaldo(Float valor, String nomeArquivo);
 }

@@ -19,7 +19,7 @@ public class ContaViewImpl implements ContaView {
 
     @Override
     public void init() throws IOException {
-
+        System.out.println("Qual tipo de conta deseja criar?");
         int opcao = 0;
         Scanner sc = new Scanner(System.in);
         do {
@@ -44,46 +44,43 @@ public class ContaViewImpl implements ContaView {
             case 1:
                 System.out.println("criar conta corrente");
                 Conta contaCorrente = new ContaCorrente();
-                contaCorrente.setSaldo(0);
+                contaCorrente.setSaldo(0f);
                 System.out.println("Digite o código do cliente para associar a conta corrente");
                 usuarioDao.listar();
                 contaCorrente.setCodCliente(sc.nextInt());
                 contaCorrente.setTipoConta(TipoConta.CORRENTE);
                 contaFactory.escolherConta(TipoConta.CORRENTE).create(contaCorrente);
-
-
+                System.out.println("Caso não queria criar outra conta digite 0 para sair");
                 break;
 
             case 2:
                 System.out.println("criar conta especial");
-                Conta contacontaEspecial = new ContaEspecial();
-                contacontaEspecial.setSaldo(0);
+                ContaEspecial contaEspecial = new ContaEspecial();
+                contaEspecial.setSaldo(400f);
+                contaEspecial.setLimite(200f);
                 System.out.println("Digite o código do cliente para associar a conta especial");
                 usuarioDao.listar();
-                contacontaEspecial.setCodCliente(sc.nextInt());
-                contacontaEspecial.setTipoConta(TipoConta.ESPECIAL);
-                contaFactory.escolherConta(TipoConta.ESPECIAL).create(contacontaEspecial);
-
-
-
+                contaEspecial.setCodCliente(sc.nextInt());
+                contaEspecial.setTipoConta(TipoConta.ESPECIAL);
+                contaFactory.escolherConta(TipoConta.ESPECIAL).create(contaEspecial);
+                System.out.println("Caso não queria criar outra conta digite 0 para sair");
                 break;
 
             case 3:
                 System.out.println("criar conta poupança");
                 Conta contaPoupanca = new ContaPoupanca();
-                contaPoupanca.setSaldo(0);
+                contaPoupanca.setSaldo(100f);
                 System.out.println("Digite o código do cliente para associar a contaPoupança");
                 usuarioDao.listar();
                 contaPoupanca.setCodCliente(sc.nextInt());
                 contaPoupanca.setTipoConta(TipoConta.POUPANCA);
                 contaFactory.escolherConta(TipoConta.POUPANCA).create(contaPoupanca);
-
+                System.out.println("Caso não queria criar outra conta digite 0 para sair");
                 break;
 
             case 0:
                 //TODO como faço para voltar ao menu anterior?
-                System.out.println("Sair");
-
+                System.exit(0);
                 break;
 
             default:

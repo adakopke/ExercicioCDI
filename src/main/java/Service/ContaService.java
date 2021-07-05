@@ -7,8 +7,8 @@ import Dominio.TipoConta;
 public interface ContaService {
 
     void create(Conta conta);
-    void sacar(int valor, String nomeArquivo);
-    void depositar(int valor, String nomeArquivo);
+    void sacar(Float valor, String nomeArquivo);
+    void depositar(Float valor, String nomeArquivo);
     String saldo(String nomeArquivo);
     boolean validarConta(String[] validar);
     boolean autenticarCliente(String[] validar);

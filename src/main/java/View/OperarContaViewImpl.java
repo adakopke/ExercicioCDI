@@ -80,13 +80,46 @@ public ContaFactory contaFactory;
                 break;
 
             case 2:
+
+                if(contaFactory.escolherConta(TipoConta.ESPECIAL).clientePossuiConta(validar, TipoConta.ESPECIAL)) {
+
+                    System.out.println("Qual operação deseja realizar?\n" +
+                            "1 - Consultar saldo\n" +
+                            "2 - Sacar\n" +
+                            "3 - Depositar"
+                    );
+                    int operacao = sc.nextInt();
+                    escolhaOperacao(operacao, TipoConta.ESPECIAL, validar, sc);
+
+
+                } else {
+                    System.out.println("Cliente não possui conta especial associada.");
+                }
                 break;
 
             case 3:
+
+                if(contaFactory.escolherConta(TipoConta.POUPANCA).clientePossuiConta(validar, TipoConta.POUPANCA)) {
+
+                    System.out.println("Qual operação deseja realizar?\n" +
+                            "1 - Consultar saldo\n" +
+                            "2 - Sacar\n" +
+                            "3 - Depositar"
+                    );
+                    int operacao = sc.nextInt();
+                    escolhaOperacao(operacao, TipoConta.POUPANCA, validar, sc);
+
+
+                } else {
+                    System.out.println("Cliente não possui conta poupança associada.");
+                }
                 break;
 
-            default:
+            case 0:
                 System.exit(0);
+
+            default :
+                System.out.println("Escolha uma opção válida");
 
         }
 
@@ -108,15 +141,16 @@ public ContaFactory contaFactory;
             case 2:
 
                 System.out.println("Digite o valor que deseja sacar");
-                int valor = sc.nextInt();
+                Float valor = sc.nextFloat();
                 contaFactory.escolherConta(tipoConta).sacar(valor, nomeArquivo);
+                break;
 
             case 3:
 
                 System.out.println("Digite o valor que deseja depositar");
-                valor = sc.nextInt();
+                valor = sc.nextFloat();
                 contaFactory.escolherConta(tipoConta).depositar(valor, nomeArquivo);
-
+                break;
 
         }
 

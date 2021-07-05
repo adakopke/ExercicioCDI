@@ -1,7 +1,7 @@
 package DAO;
 
 import Dominio.Conta;
-import Dominio.ContaCorrente;
+import Dominio.ContaEspecial;
 import Dominio.TipoConta;
 
 import javax.inject.Inject;
@@ -19,11 +19,15 @@ public class ContaDaoImpl implements ContaDao{
         try (FileWriter fw = new FileWriter(definirNomeArquivo, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.printf(conta.getSaldo() + "\n");
+          //  if (conta.tipoConta.equals(TipoConta.ESPECIAL) ) {
+         //       out.printf(conta.getSaldo() + "," + ((ContaEspecial) conta).getLimite() + "\n");
+          //  } else {
+                out.printf(conta.getSaldo() + "\n");
+
+          //  }
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
-
     }
 
     @Override
@@ -112,12 +116,12 @@ public class ContaDaoImpl implements ContaDao{
     }
 
     @Override
-    public void atualizarSaldo(int valor, String nomeArquivo) {
+    public void atualizarSaldo(Float valor, String nomeArquivo) {
 
         try (FileWriter fw = new FileWriter(nomeArquivo);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.printf(Integer.toString(valor));
+            out.printf(Float.toString(valor));
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }
