@@ -1,9 +1,9 @@
 package View;
 
 import DAO.UsuarioDao;
-import Dominio.Conta;
-import Dominio.ContaCorrente;
-import Dominio.TipoConta;
+import Dominio.*;
+import Factory.ContaFactory;
+import Service.ContaPoupancaServiceImpl;
 import Service.ContaService;
 
 import javax.inject.Inject;
@@ -12,12 +12,12 @@ import java.util.Scanner;
 
 public class ContaViewImpl implements ContaView {
 
-    @Inject
-    public ContaService contaService;
 
     @Inject
     public UsuarioDao usuarioDao;
 
+    @Inject
+    public ContaFactory contaFactory;
 
     @Override
     public void init() throws IOException {
@@ -52,17 +52,37 @@ public class ContaViewImpl implements ContaView {
                 usuarioDao.listar();
                 contaCorrente.setCodCliente(sc.nextInt());
                 contaCorrente.setTipoConta(TipoConta.CORRENTE);
-                contaService.create(contaCorrente);
+                contaFactory.createConta(TipoConta.CORRENTE).create(contaCorrente);
 
 
                 break;
 
             case 2:
-                System.out.println("criar contaCorrente investimento");
+                System.out.println("criar conta investimento");
+                Conta contaInvestimento = new ContaInvestimento();
+                System.out.println("Informe o saldo de abertura");
+                contaInvestimento.setSaldo(sc.nextInt());
+                System.out.println("A qual usuário deseja associar a contaInvestimento");
+                usuarioDao.listar();
+                contaInvestimento.setCodCliente(sc.nextInt());
+                contaInvestimento.setTipoConta(TipoConta.INVESTIMENTO);
+                contaFactory.createConta(TipoConta.INVESTIMENTO).create(contaInvestimento);
+
+
+
                 break;
 
             case 3:
-                System.out.println("criar contaCorrente poupança");
+                System.out.println("criar conta poupança");
+                Conta contaPoupanca = new ContaPoupanca();
+                System.out.println("Informe o saldo de abertura");
+                contaPoupanca.setSaldo(sc.nextInt());
+                System.out.println("A qual usuário deseja associar a contaPoupança");
+                usuarioDao.listar();
+                contaPoupanca.setCodCliente(sc.nextInt());
+                contaPoupanca.setTipoConta(TipoConta.POUPANCA);
+                contaFactory.createConta(TipoConta.POUPANCA).create(contaPoupanca);
+
                 break;
 
             case 0:

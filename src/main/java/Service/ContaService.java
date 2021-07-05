@@ -5,6 +5,6 @@ import Dominio.ContaCorrente;
 
 public interface ContaService {
 
-    void create(Conta contaCorrente);
+    void create(Conta conta);
 
 }
