@@ -6,6 +6,7 @@ import Factory.ContaFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class ContaViewImpl implements ContaView {
@@ -44,7 +45,7 @@ public class ContaViewImpl implements ContaView {
             case 1:
                 System.out.println("criar conta corrente");
                 Conta contaCorrente = new ContaCorrente();
-                contaCorrente.setSaldo(0f);
+                contaCorrente.setSaldo(BigDecimal.valueOf(0));
                 System.out.println("Digite o código do cliente para associar a conta corrente");
                 usuarioDao.listar();
                 contaCorrente.setCodCliente(sc.nextInt());
@@ -56,8 +57,8 @@ public class ContaViewImpl implements ContaView {
             case 2:
                 System.out.println("criar conta especial");
                 ContaEspecial contaEspecial = new ContaEspecial();
-                contaEspecial.setSaldo(400f);
-                contaEspecial.setLimite(200f);
+                contaEspecial.setSaldo(BigDecimal.valueOf(400));
+                contaEspecial.setLimite(BigDecimal.valueOf(200));
                 System.out.println("Digite o código do cliente para associar a conta especial");
                 usuarioDao.listar();
                 contaEspecial.setCodCliente(sc.nextInt());
@@ -69,7 +70,7 @@ public class ContaViewImpl implements ContaView {
             case 3:
                 System.out.println("criar conta poupança");
                 Conta contaPoupanca = new ContaPoupanca();
-                contaPoupanca.setSaldo(100f);
+                contaPoupanca.setSaldo(BigDecimal.valueOf(100));
                 System.out.println("Digite o código do cliente para associar a contaPoupança");
                 usuarioDao.listar();
                 contaPoupanca.setCodCliente(sc.nextInt());

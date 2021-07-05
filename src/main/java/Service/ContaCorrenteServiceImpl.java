@@ -6,6 +6,7 @@ import Dominio.TipoConta;
 import Dominio.TipoContaAnotation;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 @TipoContaAnotation(value = TipoConta.CORRENTE)
 public class ContaCorrenteServiceImpl implements ContaService {
@@ -21,31 +22,30 @@ public class ContaCorrenteServiceImpl implements ContaService {
     }
 
     @Override
-    public void sacar(Float valor, String nomeArquivo) {
+    public void sacar(BigDecimal valor, String nomeArquivo) {
 
-        Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
+        BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
 
-        if ((saldoAtual - valor) < 0) {
+        if ((saldoAtual.subtract(valor).compareTo(BigDecimal.valueOf(0)) < 0)) {
             System.out.println("Você não possui saldo para realizar esse saque");
         } else {
-            contaDao.atualizarSaldo((saldoAtual - valor), nomeArquivo);
+            contaDao.atualizarSaldo((saldoAtual.subtract(valor)), nomeArquivo);
         }
 
     }
 
     @Override
-    public void depositar(Float valor, String nomeArquivo) {
+    public void depositar(BigDecimal valor, String nomeArquivo) {
 
 
-        Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
-        contaDao.atualizarSaldo((saldoAtual + valor), nomeArquivo);
+        BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
+        contaDao.atualizarSaldo((saldoAtual.add(valor)), nomeArquivo);
         }
 
 
     @Override
-    public String saldo(String nomeArquivo) {
-        contaDao.saldo(nomeArquivo);
-        return contaDao.saldo(nomeArquivo);
+    public void saldo(String nomeArquivo) {
+        System.out.println(contaDao.saldo(nomeArquivo));
     }
 
     @Override

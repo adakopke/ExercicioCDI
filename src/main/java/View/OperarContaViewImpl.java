@@ -4,8 +4,8 @@ import Dominio.TipoConta;
 import Factory.ContaFactory;
 
 import javax.inject.Inject;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -134,21 +134,21 @@ public ContaFactory contaFactory;
 
             case 1:
                 System.out.print("Saldo em " + LocalDate.now() + " : ");
-                System.out.println(contaFactory.escolherConta(tipoConta).saldo(nomeArquivo));
+                contaFactory.escolherConta(tipoConta).saldo(nomeArquivo);
                 System.out.println();
                 break;
 
             case 2:
 
                 System.out.println("Digite o valor que deseja sacar");
-                Float valor = sc.nextFloat();
+                BigDecimal valor = BigDecimal.valueOf(sc.nextFloat());
                 contaFactory.escolherConta(tipoConta).sacar(valor, nomeArquivo);
                 break;
 
             case 3:
 
                 System.out.println("Digite o valor que deseja depositar");
-                valor = sc.nextFloat();
+                valor = BigDecimal.valueOf(sc.nextFloat());
                 contaFactory.escolherConta(tipoConta).depositar(valor, nomeArquivo);
                 break;
 

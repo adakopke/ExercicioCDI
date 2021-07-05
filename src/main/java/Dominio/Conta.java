@@ -3,15 +3,14 @@ package Dominio;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.enterprise.inject.Default;
-import javax.inject.Qualifier;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 public abstract class Conta {
 
     public TipoConta tipoConta;
-    public Float saldo;
+    public BigDecimal saldo;
     public Integer codCliente;
 
 

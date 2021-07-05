@@ -3,6 +3,8 @@ package DAO;
 import Dominio.Conta;
 import Dominio.TipoConta;
 
+import java.math.BigDecimal;
+
 public interface ContaDao {
 
     void gravarConta(Conta conta);
@@ -13,7 +15,7 @@ public interface ContaDao {
 
     boolean arquivoExiste(String[] validar, TipoConta tipoConta);
 
-    String saldo(String nomeArquivo);
+    BigDecimal saldo(String nomeArquivo);
 
-    void atualizarSaldo(Float valor, String nomeArquivo);
+    void atualizarSaldo(BigDecimal valor, String nomeArquivo);
 }

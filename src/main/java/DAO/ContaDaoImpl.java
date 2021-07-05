@@ -1,11 +1,11 @@
 package DAO;
 
 import Dominio.Conta;
-import Dominio.ContaEspecial;
 import Dominio.TipoConta;
 
 import javax.inject.Inject;
 import java.io.*;
+import java.math.BigDecimal;
 
 public class ContaDaoImpl implements ContaDao{
 
@@ -97,12 +97,14 @@ public class ContaDaoImpl implements ContaDao{
     }
 
     @Override
-    public String saldo(String nomeArquivo) {
+    public BigDecimal saldo(String nomeArquivo) {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(nomeArquivo));
 
-            return br.readLine();
+            BigDecimal valor = BigDecimal.valueOf(Long.parseLong((br.readLine())));
+
+            return BigDecimal.valueOf(Long.parseLong((br.readLine())));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -116,12 +118,12 @@ public class ContaDaoImpl implements ContaDao{
     }
 
     @Override
-    public void atualizarSaldo(Float valor, String nomeArquivo) {
+    public void atualizarSaldo(BigDecimal valor, String nomeArquivo) {
 
         try (FileWriter fw = new FileWriter(nomeArquivo);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.printf(Float.toString(valor));
+            out.printf(valor.toString());
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

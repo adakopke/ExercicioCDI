@@ -2,12 +2,11 @@ package Service;
 
 import DAO.ContaDao;
 import Dominio.Conta;
-import Dominio.ContaEspecial;
 import Dominio.TipoConta;
 import Dominio.TipoContaAnotation;
-import org.w3c.dom.ls.LSOutput;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 
 @TipoContaAnotation(value = TipoConta.ESPECIAL)
 public class ContaEspecialServiceImpl implements ContaService {
@@ -21,39 +20,42 @@ public class ContaEspecialServiceImpl implements ContaService {
     }
 
     @Override
-    public void sacar(Float valor, String nomeArquivo) {
-        Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
+    public void sacar(BigDecimal valor, String nomeArquivo) {
+        BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
 
-        if ((saldoAtual - valor) < -200) {
+        if ((saldoAtual.subtract(valor).compareTo(BigDecimal.valueOf(-200))) < 0) {
             System.out.println("Você não possui saldo para realizar esse saque");
         } else {
-            contaDao.atualizarSaldo((saldoAtual - valor), nomeArquivo);
+            contaDao.atualizarSaldo((saldoAtual.subtract(valor)), nomeArquivo);
         }
     }
 
         @Override
-        public void depositar ( Float valor, String nomeArquivo){
-            Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
-            contaDao.atualizarSaldo((saldoAtual + valor), nomeArquivo);
+        public void depositar (BigDecimal valor, String nomeArquivo){
+            BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
+            contaDao.atualizarSaldo((saldoAtual.add(valor)), nomeArquivo);
         }
 
 
         @Override
-        public String saldo (String nomeArquivo){
-            Float saldoAtual = Float.parseFloat(contaDao.saldo(nomeArquivo));
+        public void saldo (String nomeArquivo){
+            BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
             //TODO trazer o limite do arquivo
-            Float limite = 200f;
-            if (saldoAtual >= 0) {
-
-                return "Seu saldo é de :" +
-                        Float.toString(saldoAtual) + "\n" +
-                        "Seu limite é de :" + limite;
+            BigDecimal limite = BigDecimal.valueOf(200);
+            if (saldoAtual.compareTo(BigDecimal.valueOf(0)) >= 0) {
+                System.out.println(
+                        "Seu saldo é de :" +
+                                saldoAtual.toString() + "\n" +
+                                "Seu limite é de :" + limite
+                                        );
 
 
             } else {
-                return "Seu saldo é de : 0" +
+                System.out.println(
+                "Seu saldo é de : 0" +
                         "\n" +
-                        "Seu limite é de :" + (limite - Math.abs(saldoAtual));
+                        "Seu limite é de :" + (limite.subtract(saldoAtual.abs()))
+                );
             }
 
         }
