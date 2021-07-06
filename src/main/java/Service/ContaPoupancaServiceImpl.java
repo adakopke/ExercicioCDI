@@ -40,12 +40,9 @@ public class ContaPoupancaServiceImpl implements ContaService {
 
         BigDecimal saldoAtual = contaDao.saldo(nomeArquivo);
 
-        if ((saldoAtual.subtract(valor).compareTo(BigDecimal.valueOf(0))) < 0) {
-            System.out.println("Você não possui saldo para realizar esse saque");
-        } else {
             BigDecimal taxa = ((saldoAtual.multiply(BigDecimal.valueOf(0.07).divide(BigDecimal.valueOf(100)))));
             contaDao.atualizarSaldo((saldoAtual.add(valor).subtract(taxa)), nomeArquivo);
-        }
+
     }
 
 

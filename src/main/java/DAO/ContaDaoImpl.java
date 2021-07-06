@@ -102,15 +102,11 @@ public class ContaDaoImpl implements ContaDao{
         try {
             BufferedReader br = new BufferedReader(new FileReader(nomeArquivo));
 
-            BigDecimal valor = BigDecimal.valueOf(Long.parseLong((br.readLine())));
-
-            return BigDecimal.valueOf(Long.parseLong((br.readLine())));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return BigDecimal.valueOf(Float.parseFloat(br.readLine()));
 
         } catch (IOException e) {
             e.printStackTrace();
+
         }
         System.out.println("");
 
